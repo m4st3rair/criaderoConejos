@@ -158,67 +158,92 @@
 
         </div>
         <div class="col-lg-4 ml-auto">
-
          <h3>Nuevo Conejo</h3>    
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Nombre</label>
-                <input class="form-control" id="nombre" type="text" placeholder="Nombre" required data-validation-required-message="Ingresa el nombre de tu nueva coneja ">
+                <input class="form-control" id="nameConejo" type="text" placeholder="Nombre" required data-validation-required-message="Ingresa el nombre de tu nueva coneja ">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
-            <br>
-            <br>
-
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Precio</label>
-                <input class="form-control" id="precio" type="text" placeholder="Precio" required="required" data-validation-required-message="Ingrese el costo del conejo">
+                <input class="form-control" id="priceConejo" type="number" placeholder="Precio" required="required" data-validation-required-message="Ingrese el costo del conejo">
                 <p class="help-block text-danger"></p>
               </div>
-            </div>
-
             <br>
-
-            
+            </div>
             <div class="form-check-inline">
               <label class="form-check-label" for="radio1">
-                <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" required checked>Hembra
+                <input type="radio" class="form-check-input" id="radio1" name="sexoConejo" value="H" required checked>Hembra
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label" for="radio2">
-                <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2" required>Macho
+                <input type="radio" class="form-check-input" id="radio2" name="sexoConejo" value="M" required>Macho
               </label>
             </div>
-            <br>
-            <br>
+            <br><br>
             
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-outline-light btn-block" id="sendMessageButton">Nuevo Conejo</button>
+              <button class="btn btn-primary btn-outline-light btn-block" onclick="nuevoConejo()" >Nuevo Conejo</button>
             </div>
-          </form>
 
 
         </div>
+
+
+        <script>
+    function nuevoConejo() {
+        var nombreC = document.getElementById("nameConejo").value;
+        var precioC = document.getElementById("priceConejo").value;        
+        var memo = document.getElementsByName('sexoConejo');
+        var sexoC;
+        var i=0;
+        for(i=0; i<memo.length; i++){
+          if(memo[i].checked){
+            sexoC=memo[i].value;
+          }
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("tablita").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("POST", "post.php", true);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send("nombre="+nombr+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
+            alert("nuevo conejito agregado !!");
+            
+        alert(sexoC);
+        
+
+
+    }
+
+</script>
+
+
+
         <div class="col-lg-4 mr-auto">
           <h3>Conejos</h3>
           <table class="table table-striped">
             <tr>
-              <th style="color:#FFFFFF";>
+              <th style="color:#FFFFFF">
                 Nombre
               </th>
-              <th style="color:#FFFFFF";>
+              <th style="color:#FFFFFF">
                 No.Camadas
               </th>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <td style="color:#FFFFFF";>La loca</td>
-              <td style="color:#FFFFFF";>10</td>
+              <td style="color:#FFFFFF">La loca</td>
+              <td style="color:#FFFFFF">10</td>
               <td>
                 <div class="form-group">
                   <button type="submit" class="btn btn-outline-light btn-block" id="">Murio</button>
@@ -764,6 +789,10 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/freelancer.min.js"></script>
+
+
+
+
 
 </body>
 

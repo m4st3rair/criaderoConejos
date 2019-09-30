@@ -1,0 +1,47 @@
+index
+    notificaciones
+        Las crias de NOMBRE_D_CONEJA necesitan ser removias de la madre (btn ya han sido cambiadas a otra jaula)
+        Hay que sacar a la  NOMBRE_D_CONEJA del Conejo (Boton de Ya fue cambiada de lugar)
+            ->se inicia la cuenta regresiva para el tiempo de dar a luz
+        La NOMBRE_D_CONEJA esta apunto de criar (Ya dio a luz?)
+            ->Cuantas crias tuvo?
+                -viven?
+            ->Se asigna el numero de la camada
+            ->Se inicia el tiempo para tomar en cuenta al tiempo de venta
+            ->Se inicia la cuenta regresiva de cuando deben ser removidos de la madre
+            ->Se enlaza la informacion con la madre
+            
+            >>> En caso de que no haya criado si ha pasado el tiempo supuesto para la coneja
+                - se informa que la coneja ya no crio y que es recomendable pasarla con el conejo
+                - Se borra el proceso y se vuelve a iniciar
+    animales
+        Ha ocurrido algo con alguna coneja? (b o t o n)
+            madre
+                venta de la coneja
+                (para los conejos es un mes aproximadamente se pondra una semana menos y una semana mas del mes la notify)
+                cuando se paso con el conejo
+                cuando hay que sacar a la coneja a su madriguera-> de con las crias
+
+        Ha muerto alguna cria?? (por muerte prematura y/o enfermedad)
+        --(Info) la ultima camada se vendio en TIEMPO DIAS
+        --(Info) la camada proxima a vender es NOMBRE/NUMERO_D_CAMADA y NOMBRE_MADRE
+            -> ya se Vendio??   
+    Graficas
+        gastos totales vs ingresos totales
+        gastos en el ultimo mes vs ingresos en el ultimo mes   
+        cuantos conejos se han vendido total
+        cuantos conejos se han vendido el ultimo año
+        cuantas crias ha tenido cada coneja
+        cuantas crias ha perdido cada coneja
+        cuantas camadas ha tenido cada coneja
+        la camada que se vendio en menos tiempo fue:
+
+    gastos
+        Alimentos
+        jaula
+        comedero
+        bebedero
+        medicamento
+        
+        
+

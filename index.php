@@ -1,7 +1,7 @@
 
 <?php
     include_once ("sesiones.php");
-    include_once 'consultas.php';
+    include_once 'funcionesPHP/consultas.php';
 
     $usrS = new UserSession();
 
@@ -28,5 +28,8 @@
     }
 
 ?>
+
+
+
 
 
