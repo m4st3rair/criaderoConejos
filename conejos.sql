@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2019 a las 03:19:19
+-- Tiempo de generación: 30-09-2019 a las 07:39:41
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Versión de PHP: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,11 +47,25 @@ CREATE TABLE `camadas` (
 CREATE TABLE `conejos` (
   `idCONEJO` int(20) NOT NULL,
   `nombreCONEJO` varchar(50) NOT NULL,
-  `sexoCONEJO` tinyint(1) NOT NULL,
+  `sexoCONEJO` varchar(2) NOT NULL,
   `camadasCONEJO` int(10) NOT NULL,
   `idUSR` int(10) NOT NULL,
-  `estadoCONEJO` varchar(20) NOT NULL
+  `estadoCONEJO` varchar(20) NOT NULL,
+  `precio` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `conejos`
+--
+
+INSERT INTO `conejos` (`idCONEJO`, `nombreCONEJO`, `sexoCONEJO`, `camadasCONEJO`, `idUSR`, `estadoCONEJO`, `precio`) VALUES
+(1, 'pipipupu', '0', 0, 1, 'NO', 15),
+(2, 'pipipupu2', '0', 0, 1, 'NO', 15),
+(3, 'pipipupu2', '0', 0, 1, 'NO', 15),
+(4, 'qweqwe', '0', 0, 1, 'NO', 234234),
+(5, 'jorgen2', 'M', 0, 1, 'NO', 234117),
+(6, 'no aun no', 'H', 0, 1, 'NO', 234063),
+(7, 'pipipupu', 'M', 0, 2, 'NO', 2123123);
 
 -- --------------------------------------------------------
 
@@ -130,7 +144,7 @@ ALTER TABLE `camadas`
 -- AUTO_INCREMENT de la tabla `conejos`
 --
 ALTER TABLE `conejos`
-  MODIFY `idCONEJO` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCONEJO` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `gastos`

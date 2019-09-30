@@ -207,18 +207,18 @@
             sexoC=memo[i].value;
           }
         }
+        alert(sexoC);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    document.getElementById("tablita").innerHTML = xhttp.responseText;
-                }
-            };
-            xhttp.open("POST", "post.php", true);
-            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhttp.send("nombre="+nombr+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
-            alert("nuevo conejito agregado !!");
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("tablaConejos").innerHTML = xhttp.responseText;
+          }
+        };
+        xhttp.open("POST", "funcionesPHP/tablaConejos.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("nombre="+nombreC+"&precio="+precioC+"&sexo="+sexoC+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
+        alert("nuevo conejito agregado !!");
             
-        alert(sexoC);
         
 
 
@@ -228,8 +228,9 @@
 
 
 
-        <div class="col-lg-4 mr-auto">
+        <div class="col-lg-4 mr-auto" id="tablaConejos" >
           <h3>Conejos</h3>
+
           <table class="table table-striped">
             <tr>
               <th style="color:#FFFFFF">
@@ -241,6 +242,7 @@
               <td></td>
               <td></td>
             </tr>
+
             <tr>
               <td style="color:#FFFFFF">La loca</td>
               <td style="color:#FFFFFF">10</td>
@@ -249,11 +251,7 @@
                   <button type="submit" class="btn btn-outline-light btn-block" id="">Murio</button>
                 </div>
               </td>
-              <td>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-outline-light btn-block" id="">vendido</button>
-                </div>
-              </td>
+
             </tr>
             <tr>
               <td>El garañon</td>
