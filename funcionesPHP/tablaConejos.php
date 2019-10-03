@@ -9,13 +9,25 @@
         nuevo_Conejo($_POST["nombre"],  $_POST["sexo"], $usrS->getidUsr(), $_POST["precio"]);
         
         $conejos=getConejosShort($usrS->getidUsr());
-        foreach ($conejos as $value) {
-           echo $value[0]. " ".$value[1]; 
-            echo "<br>";
-        }
     }
+    //  T A B L A   C O N E J O S
 
+    //idCONEJO,	
+    //nombreCONEJO,
+    //sexoCONEJO,
+    //camadasCONEJO,
+    //idUSR,
+    //estadoCONEJO
+    //precio
 ?>
+<h3>Conejos</h3>
+<div style="padding : 4px;
+            width : 100%;
+            height : 300px;
+            overflow : auto; ">
+            
+
+
 
 <table class="table table-striped">
             <tr>
@@ -26,22 +38,22 @@
                 No.Camadas
               </th>
               <td></td>
-              <td></td>
             </tr>
-
+            <?php
+              foreach ($conejos as $value) {
+            ?>
             <tr>
-              <td style="color:#FFFFFF">La loca</td>
-              <td style="color:#FFFFFF">10</td>
+              <td style="color:#FFFFFF"><?php echo $value["nombreCONEJO"]; ?></td>
+              <td style="color:#FFFFFF"><?php echo $value["camadasCONEJO"]; ?></td>
               <td>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-outline-light btn-block" id="">Murio</button>
+                  <button type="submit" class="btn btn-outline-light btn-block" id="">Quitar</button>
                 </div>
               </td>
 
             </tr>
-            <tr>
-              <td>El garañon</td>
-              <td>0</td>
-            </tr>
-
+            <?php 
+              }
+            ?>
           </table>
+          </div>

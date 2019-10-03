@@ -158,38 +158,40 @@
 
         </div>
         <div class="col-lg-4 ml-auto">
-         <h3>Nuevo Conejo</h3>    
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Nombre</label>
-                <input class="form-control" id="nameConejo" type="text" placeholder="Nombre" required data-validation-required-message="Ingresa el nombre de tu nueva coneja ">
-                <p class="help-block text-danger"></p>
-              </div>
+
+          <h3>Nuevo Conejo</h3>    
+          
+          <div class="control-group">
+            <div class="form-group floating-label-form-group mb-0 pb-2">
+              <label>Nombre</label>
+              <input class="form-control" id="nameConejo" type="text" placeholder="Nombre" required>
+              <div id="MSGnombre"></div>
             </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Precio</label>
-                <input class="form-control" id="priceConejo" type="number" placeholder="Precio" required="required" data-validation-required-message="Ingrese el costo del conejo">
-                <p class="help-block text-danger"></p>
-              </div>
-            <br>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group mb-0 pb-2">
+              <label>Precio</label>
+              <input class="form-control" id="priceConejo" type="number" placeholder="Precio" required>
+              <div id="MSGprecio"></div>
             </div>
-            <div class="form-check-inline">
-              <label class="form-check-label" for="radio1">
-                <input type="radio" class="form-check-input" id="radio1" name="sexoConejo" value="H" required checked>Hembra
-              </label>
-            </div>
-            <div class="form-check-inline">
-              <label class="form-check-label" for="radio2">
-                <input type="radio" class="form-check-input" id="radio2" name="sexoConejo" value="M" required>Macho
-              </label>
-            </div>
-            <br><br>
-            
-            <div id="success"></div>
-            <div class="form-group">
-              <button class="btn btn-primary btn-outline-light btn-block" onclick="nuevoConejo()" >Nuevo Conejo</button>
-            </div>
+          <br>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label" for="radio1">
+              <input type="radio" class="form-check-input" id="radio1" name="sexoConejo" value="H" required checked>Hembra
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label" for="radio2">
+              <input type="radio" class="form-check-input" id="radio2" name="sexoConejo" value="M" required>Macho
+            </label>
+          </div>
+          <br><br>
+          
+          <div id="success"></div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-outline-light btn-block" onclick="nuevoConejo('yolo' )" >Nuevo Conejo</button>
+          </div>
 
 
         </div>
@@ -198,7 +200,18 @@
         <script>
     function nuevoConejo() {
         var nombreC = document.getElementById("nameConejo").value;
-        var precioC = document.getElementById("priceConejo").value;        
+        var precioC = document.getElementById("priceConejo").value;
+        var valido=0;
+      if (nombreC=="") {
+        document.getElementById("MSGnombre").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el nombre</strong></div></div>';
+        valido=1;
+      }
+      if (precioC=="") {
+        document.getElementById("MSGprecio").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el precio</strong></div></div>';
+        valido=1;
+      }
+
+      if (valido==0) {        
         var memo = document.getElementsByName('sexoConejo');
         var sexoC;
         var i=0;
@@ -218,7 +231,14 @@
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send("nombre="+nombreC+"&precio="+precioC+"&sexo="+sexoC+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
         alert("nuevo conejito agregado !!");
-            
+
+        //Limpiamos
+        document.getElementById("MSGnombre").innerHTML="";
+        document.getElementById("MSGprecio").innerHTML="";
+        document.getElementById("nameConejo").value="";
+        document.getElementById("priceConejo").value="";
+        
+      }
         
 
 
@@ -248,7 +268,7 @@
               <td style="color:#FFFFFF">10</td>
               <td>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-outline-light btn-block" id="">Murio</button>
+                  <button type="submit" class="btn btn-outline-light btn-block" id="">Quitar</button>
                 </div>
               </td>
 
@@ -272,7 +292,7 @@
             <td style="color:#FFFFFF"  colspan="6">
               Información
             </td>
-            <td style="color:#FFFFFF"  colspan="2">
+            <td style="color:#FFFFFF" colspan="2">
               Algun Conejo ha...
             </td>
           </th>        

@@ -34,13 +34,9 @@
         $consulta = "SELECT * FROM conejos WHERE idUSR = '$idUsr' ORDER BY nombreCONEJO";
 
         $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-        
         $res = array();
-        
         while ($columna = mysqli_fetch_array( $resultado )){
-            $fil = array();
-            array_push($fil, $columna['idCONEJO'], $columna['nombreCONEJO'], $columna['camadasCONEJO'], $columna['estadoCONEJO']);
-            array_push($res, $fil);
+            array_push($res, $columna);
         }
         mysqli_close( $conexion );
         return $res;
