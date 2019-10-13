@@ -42,6 +42,36 @@
         return $res;
     
     }
+    
+    function getConejosM($idUsr){
+        include_once 'conectDB.php';
+        $conexion = conectarDB();
+        $consulta = "SELECT * FROM conejos WHERE idUSR = '$idUsr' AND (NOT estadoCONEJO = 'MUERTO') AND estadoCONEJO = 'NO' AND sexoCONEJO = 'M' ORDER BY nombreCONEJO";
+        $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+        $res = array();
+        while ($columna = mysqli_fetch_array( $resultado )){
+            array_push($res, $columna);
+        }
+        mysqli_close( $conexion );
+        return $res;
+    
+    }
+    
+    function getConejasH($idUsr){
+        include_once 'conectDB.php';
+        $conexion = conectarDB();
+        $consulta = "SELECT * FROM conejos WHERE idUSR = '$idUsr' AND (NOT estadoCONEJO = 'MUERTO') AND estadoCONEJO = 'NO' AND sexoCONEJO = 'H' ORDER BY nombreCONEJO";
+        $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+        $res = array();
+        while ($columna = mysqli_fetch_array( $resultado )){
+            array_push($res, $columna);
+        }
+        mysqli_close( $conexion );
+        return $res;
+    
+    }
+    
+    
     //  T A B L A   C O N E J O S
 
     //idCONEJO,	

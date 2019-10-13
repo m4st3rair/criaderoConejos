@@ -164,10 +164,18 @@
         <div class="col-sm-12">
           <H3>Ciclo de Crianza</H3>
           
-        <p class="lead">Aqui podras encontrar toda la informacion de tus conejos desde el dia de nacidos hasta la posibilidad de llevar a cabo la planeacion de tiempos</p>
+          <p class="lead">Aqui podras encontrar toda la informacion de tus conejos desde el dia de nacidos hasta la posibilidad de llevar a cabo la planeacion de tiempos</p>
+          <button class="btn btn-primary btn-outline-light" data-toggle="modal" data-target="#modalCicloClianza" >Iniciar Ciclo de Crianza</button>
 
         </div>
-        <div class="col-lg-4 ml-auto">
+
+        <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+        <div class="col-lg-6 ml-auto">
 
           <h3>Nuevo Conejo</h3>    
           
@@ -270,7 +278,7 @@
 
 
 
-        <div class="col-lg-4 mr-auto" id="tablaConejos" >
+        <div class="col-lg-6 mr-auto" id="tablaConejos" >
           <?php include_once 'funcionesPHP/soloTabla.php'; ?>
         
         </div>
@@ -774,6 +782,50 @@
                 <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-times fa-fw"></i>
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- Portfolio Modal 7 -->
+ <div class="portfolio-modal modal fade" id="modalCicloClianza" tabindex="-1" role="dialog" aria-labelledby="portfolioModal6Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ciclo de Crianza</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image 
+                <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">
+                 Portfolio Modal - Text -->
+                <p class="mb-5">Selecciona Una Coneja y un Conejo para iniciar el ciclo de crianza</p>
+                <div id="spaceLoveConejos">
+                  <?PHP
+                    include_once 'funcionesPHP/tablasConejos.php';
+                  ?>
+                </div>
+                
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
