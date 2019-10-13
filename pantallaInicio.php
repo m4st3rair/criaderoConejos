@@ -22,6 +22,9 @@
   //$usrS = new UserSession();
 
     ?>
+
+
+
 </head>
 
 <body id="page-top">
@@ -96,7 +99,14 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      <!-- Portfolio Grid Items -->
+      
+
+
+
+
+
+
+      
       <div class="row">
         <div class="col-sm-12">
         <div class="alert alert-success alert-dismissible">
@@ -190,7 +200,7 @@
           
           <div id="success"></div>
           <div class="form-group">
-            <button class="btn btn-primary btn-outline-light btn-block" onclick="nuevoConejo('yolo' )" >Nuevo Conejo</button>
+            <button class="btn btn-primary btn-outline-light btn-block" onclick="nuevoConejo()" >Nuevo Conejo</button>
           </div>
 
 
@@ -198,88 +208,70 @@
 
 
         <script>
-    function nuevoConejo() {
-        var nombreC = document.getElementById("nameConejo").value;
-        var precioC = document.getElementById("priceConejo").value;
-        var valido=0;
-      if (nombreC=="") {
-        document.getElementById("MSGnombre").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el nombre</strong></div></div>';
-        valido=1;
-      }
-      if (precioC=="") {
-        document.getElementById("MSGprecio").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el precio</strong></div></div>';
-        valido=1;
-      }
-
-      if (valido==0) {        
-        var memo = document.getElementsByName('sexoConejo');
-        var sexoC;
-        var i=0;
-        for(i=0; i<memo.length; i++){
-          if(memo[i].checked){
-            sexoC=memo[i].value;
+          function muerteConejo(muerto){
+            var opcion= document.getElementById("death"+muerto).value;
+            alert(opcion);
+            alert(muerto);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange =function(){
+              if (xhttp.readyState==4 && xhttp.status==200) {
+                document.getElementById("tablaConejos").innerHTML=xhttp.responseText;
+              }
+            };
+            xhttp.open("POST", "funcionesPHP/removerConejo.php", true);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //( $idCONEJO, $RazonDeMuerte, $numeroPerdidas, $tipoConejo)
+            xhttp.send("idCONEJO="+muerto+"&RazonDeMuerte="+opcion+"&numeroPerdidas=1&tipoConejo=CONEJO");
+            alert("Conejo Removido");
           }
-        }
-        alert(sexoC);
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-          if (xhttp.readyState == 4 && xhttp.status == 200) {
-            document.getElementById("tablaConejos").innerHTML = xhttp.responseText;
+
+          function nuevoConejo() {
+              var nombreC = document.getElementById("nameConejo").value;
+              var precioC = document.getElementById("priceConejo").value;
+              var valido=0;
+            if (nombreC=="") {
+              document.getElementById("MSGnombre").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el nombre</strong></div></div>';
+              valido=1;
+            }
+            if (precioC=="") {
+              document.getElementById("MSGprecio").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el precio</strong></div></div>';
+              valido=1;
+            }
+
+            if (valido==0) {        
+              var memo = document.getElementsByName('sexoConejo');
+              var sexoC;
+              var i=0;
+              for(i=0; i<memo.length; i++){
+                if(memo[i].checked){
+                  sexoC=memo[i].value;
+                }
+              }
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function(){
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                  document.getElementById("tablaConejos").innerHTML = xhttp.responseText;
+                }
+              };
+              xhttp.open("POST", "funcionesPHP/nuevoConejo.php", true);
+              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              xhttp.send("nombre="+nombreC+"&precio="+precioC+"&sexo="+sexoC+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
+              alert("Nuevo Conejo Agregado !!");
+
+              //Limpiamos
+              document.getElementById("MSGnombre").innerHTML="";
+              document.getElementById("MSGprecio").innerHTML="";
+              document.getElementById("nameConejo").value="";
+              document.getElementById("priceConejo").value="";
+            }
           }
-        };
-        xhttp.open("POST", "funcionesPHP/tablaConejos.php", true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send("nombre="+nombreC+"&precio="+precioC+"&sexo="+sexoC+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
-        alert("nuevo conejito agregado !!");
 
-        //Limpiamos
-        document.getElementById("MSGnombre").innerHTML="";
-        document.getElementById("MSGprecio").innerHTML="";
-        document.getElementById("nameConejo").value="";
-        document.getElementById("priceConejo").value="";
-        
-      }
-        
-
-
-    }
-
-</script>
+        </script>
 
 
 
         <div class="col-lg-4 mr-auto" id="tablaConejos" >
-          <h3>Conejos</h3>
-
-          <table class="table table-striped">
-            <tr>
-              <th style="color:#FFFFFF">
-                Nombre
-              </th>
-              <th style="color:#FFFFFF">
-                No.Camadas
-              </th>
-              <td></td>
-              <td></td>
-            </tr>
-
-            <tr>
-              <td style="color:#FFFFFF">La loca</td>
-              <td style="color:#FFFFFF">10</td>
-              <td>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-outline-light btn-block" id="">Quitar</button>
-                </div>
-              </td>
-
-            </tr>
-            <tr>
-              <td>El garañon</td>
-              <td>0</td>
-            </tr>
-
-          </table>
-          
+          <?php include_once 'funcionesPHP/soloTabla.php'; ?>
         
         </div>
       </div>
