@@ -14,6 +14,7 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  
 
   <!-- Theme CSS -->
   <link href="css/freelancer.min.css" rel="stylesheet">
@@ -99,16 +100,9 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      
-
-
-
-
-
-
-      
+     
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 mr-auto">
         <div class="alert alert-success alert-dismissible">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>Success!</strong> This alert box could indicate a successful or positive action.
@@ -130,7 +124,7 @@
       </div>
       <!-- /.row -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 mr-auto">
   <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">Well done!</h4>
   <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
@@ -142,6 +136,11 @@
 </div>
     </div>
   </section>
+
+
+
+
+
 
   <!-- About Section -->
   <section class="page-section bg-primary text-white mb-0" id="about">
@@ -159,22 +158,32 @@
         <div class="divider-custom-line"></div>
       </div>
 
-      <!-- About Section Content -->
+    
+      
+      
+        <!-- About Section Content -->
       <div class="row">
-        <div class="col-sm-12">
+       <div class="col-sm-12">
           <H3>Ciclo de Crianza</H3>
           
           <p class="lead">Aqui podras encontrar toda la informacion de tus conejos desde el dia de nacidos hasta la posibilidad de llevar a cabo la planeacion de tiempos</p>
-          <button class="btn btn-primary btn-outline-light" data-toggle="modal" data-target="#modalCicloClianza" >Iniciar Ciclo de Crianza</button>
+ 
+          <button class="btn btn-primary btn-outline-light" data-toggle="modal"  onclick="cargarConejosConejas()" data-target="#modalCicloClianza" >Iniciar Ciclo de Crianza</button>
 
         </div>
-
-        <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-        </div>
-        <div class="divider-custom-line"></div>
       </div>
+      <br>
+      <div class="row">
+  
+        <div class="col-sm-12" id="cicloReproduccion">
+
+          
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+      
         <div class="col-lg-6 ml-auto">
 
           <h3>Nuevo Conejo</h3>    
@@ -213,69 +222,6 @@
 
 
         </div>
-
-
-        <script>
-          function muerteConejo(muerto){
-            var opcion= document.getElementById("death"+muerto).value;
-            alert(opcion);
-            alert(muerto);
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange =function(){
-              if (xhttp.readyState==4 && xhttp.status==200) {
-                document.getElementById("tablaConejos").innerHTML=xhttp.responseText;
-              }
-            };
-            xhttp.open("POST", "funcionesPHP/removerConejo.php", true);
-            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            //( $idCONEJO, $RazonDeMuerte, $numeroPerdidas, $tipoConejo)
-            xhttp.send("idCONEJO="+muerto+"&RazonDeMuerte="+opcion+"&numeroPerdidas=1&tipoConejo=CONEJO");
-            alert("Conejo Removido");
-          }
-
-          function nuevoConejo() {
-              var nombreC = document.getElementById("nameConejo").value;
-              var precioC = document.getElementById("priceConejo").value;
-              var valido=0;
-            if (nombreC=="") {
-              document.getElementById("MSGnombre").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el nombre</strong></div></div>';
-              valido=1;
-            }
-            if (precioC=="") {
-              document.getElementById("MSGprecio").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el precio</strong></div></div>';
-              valido=1;
-            }
-
-            if (valido==0) {        
-              var memo = document.getElementsByName('sexoConejo');
-              var sexoC;
-              var i=0;
-              for(i=0; i<memo.length; i++){
-                if(memo[i].checked){
-                  sexoC=memo[i].value;
-                }
-              }
-              var xhttp = new XMLHttpRequest();
-              xhttp.onreadystatechange = function(){
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                  document.getElementById("tablaConejos").innerHTML = xhttp.responseText;
-                }
-              };
-              xhttp.open("POST", "funcionesPHP/nuevoConejo.php", true);
-              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-              xhttp.send("nombre="+nombreC+"&precio="+precioC+"&sexo="+sexoC+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
-              alert("Nuevo Conejo Agregado !!");
-
-              //Limpiamos
-              document.getElementById("MSGnombre").innerHTML="";
-              document.getElementById("MSGprecio").innerHTML="";
-              document.getElementById("nameConejo").value="";
-              document.getElementById("priceConejo").value="";
-            }
-          }
-
-        </script>
-
 
 
         <div class="col-lg-6 mr-auto" id="tablaConejos" >
@@ -339,7 +285,106 @@
     </div>
   </section>
 
- 
+  <script>
+    function cargarConejosConejas(){
+      alert("cargando");
+      $('#spaceLoveConejos').load('funcionesPHP/tablasConejos.php');
+    }
+    function nuevo_ciclo(){
+      var conejo= document.getElementById("selectCONEJOS").value;
+      var coneja= document.getElementById("selectCONEJAS").value;
+
+      if(conejo==""){
+        alert("Debe seleccionar un CONEJO");
+      }else{
+        if (coneja==""){
+          alert("Debe seleccionar una CONEJA");
+        }else{
+
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange=function() {
+            if (xhttp.readyState==4 && xhttp.status==200) {
+              document.getElementById("cicloReproduccion").innerHTML=xhttp.responseText;
+            }
+          };
+
+          xhttp.open("POST", "funcionesPHP/nuevoCiclo.php", true);
+          xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+          //$idConeja, $idConejo, $estadoConeja-> hay dos El de la tabla de ids="CICLO" y el de la tabla de ciclo ="CONEJO" 
+          xhttp.send("idConeja="+coneja+"&idConejo="+conejo+"");
+          alert("Ha Iniciado Un Nuevo Ciclo de Crianza...");
+
+
+
+
+
+        }
+      }
+      
+
+    }
+
+
+    function muerteConejo(muerto){
+      var opcion= document.getElementById("death"+muerto).value;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange =function(){
+        if (xhttp.readyState==4 && xhttp.status==200) {
+          document.getElementById("tablaConejos").innerHTML=xhttp.responseText;
+        }
+      };
+      xhttp.open("POST", "funcionesPHP/removerConejo.php", true);
+      xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      //( $idCONEJO, $RazonDeMuerte, $numeroPerdidas, $tipoConejo)
+      xhttp.send("idCONEJO="+muerto+"&RazonDeMuerte="+opcion+"&numeroPerdidas=1&tipoConejo=CONEJO");
+      alert("Conejo Removido");
+    }
+
+
+    function nuevoConejo() {
+        var nombreC = document.getElementById("nameConejo").value;
+        var precioC = document.getElementById("priceConejo").value;
+        var valido=0;
+      if (nombreC=="") {
+        document.getElementById("MSGnombre").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el nombre</strong></div></div>';
+        valido=1;
+      }
+      if (precioC=="") {
+        document.getElementById("MSGprecio").innerHTML='<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Por favor coloca el precio</strong></div></div>';
+        valido=1;
+      }
+
+      if (valido==0) {        
+        var memo = document.getElementsByName('sexoConejo');
+        var sexoC;
+        var i=0;
+        for(i=0; i<memo.length; i++){
+          if(memo[i].checked){
+            sexoC=memo[i].value;
+          }
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("tablaConejos").innerHTML = xhttp.responseText;
+          }
+        };
+        xhttp.open("POST", "funcionesPHP/nuevoConejo.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("nombre="+nombreC+"&precio="+precioC+"&sexo="+sexoC+"");//Si se quisiera agregar mas solo se pone "&email="+emali+"&lol="+leageoflegends+""
+        alert("Nuevo Conejo Agregado !!");
+
+        //Limpiamos
+        document.getElementById("MSGnombre").innerHTML="";
+        document.getElementById("MSGprecio").innerHTML="";
+        document.getElementById("nameConejo").value="";
+        document.getElementById("priceConejo").value="";
+      }
+    }
+
+  </script>
   <!-- Contact Section -->
   <section class="page-section" id="contact">
     <div class="container">
@@ -819,16 +864,17 @@
                 <!-- Portfolio Modal - Image 
                 <img class="img-fluid rounded mb-5" src="img/portfolio/submarine.png" alt="">
                  Portfolio Modal - Text -->
-                <p class="mb-5">Selecciona Una Coneja y un Conejo para iniciar el ciclo de crianza</p>
-                <div id="spaceLoveConejos">
-                  <?PHP
-                    include_once 'funcionesPHP/tablasConejos.php';
-                  ?>
-                </div>
+                <p class="mb-5">Seleccione Una Coneja y un Conejo para iniciar el ciclo de crianza</p>
+                <div id="spaceLoveConejos"></div>
                 
+                <button class="btn btn-primary" href="#"  onclick="nuevo_ciclo()" data-dismiss="modal">
+                <i class="fas fa-redo-alt"></i>
+                  Iniciar
+                </button>
+
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
-                  Close Window
+                  Cancelar
                 </button>
               </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 
     if(isset($_POST['UserName']) && isset($_POST['email']) && isset($_POST['pwd'])){
-        include_once 'consultas.php';
+        include_once 'funcionesPHP/consultas.php';
         nuevo_Usuario($_POST['UserName'], $_POST['email'], $_POST['pwd']);
 ?>
     <script>

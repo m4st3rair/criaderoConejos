@@ -1,5 +1,8 @@
 <?php
+
     include_once 'consultas.php';
+    include_once '../sesiones.php';
+    $usrS = new UserSession();
 
     $conejos=getConejosM($usrS->getidUsr());
     $conejas=getConejasH($usrS->getidUsr());

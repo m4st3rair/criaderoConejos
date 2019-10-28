@@ -13,6 +13,7 @@
     //idUSR,
     //estadoCONEJO
     //precio
+
 ?>
 <h3>Conejos</h3>
 <div style="padding : 4px;

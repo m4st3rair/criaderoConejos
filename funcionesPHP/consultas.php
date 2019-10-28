@@ -42,6 +42,31 @@
         return $res;
     
     }
+    function getCicloCrianza($idUsr){
+        include_once 'conectDB.php';
+        $conexion = conectarDB();
+        $consulta = "SELECT 
+        `idCiclo`, 
+        `estadoConeja`, 
+        `iniEstado_finCiclo`, 
+        `iniCiclo`,
+        conejos.nombreCONEJO
+        conejos.camadasCONEJO
+        FROM `ciclo` INNER JOIN `conejos`  ON ciclo.idConeja = conejos.idCONEJO 
+        INNER JOIN `usuarios` ON conejos.idUSR = usuarios.idUSR WHERE usuarios.idUSR='$idUsr' ORDER BY conejos.nombreCONEJO";
+
+        $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+        $res = array();
+        while ($columna = mysqli_fetch_array( $resultado )){
+            array_push($res, $columna);
+        }
+        mysqli_close( $conexion );
+        return $res;
+    
+    }
+
+
+
     
     function getConejosM($idUsr){
         include_once 'conectDB.php';
@@ -91,7 +116,7 @@
         }
         mysqli_close( $conexion );
     }
-
+    
     //  T A B L A   M U E R T E
     //idDeath
     //idConejo
@@ -99,10 +124,10 @@
     //RazonDeMuerte
     //tipoConejo
 
-
+    
     function quitarConejo( $idCONEJO, $RazonDeMuerte, $numeroPerdidas, $tipoConejo){
         include_once 'conectDB.php';
-
+        
         //Cambiar estatus a muerto
         $conexion = conectarDB();
         $sql = "UPDATE conejos SET estadoCONEJO ='MUERTO' WHERE idCONEJO='$idCONEJO' ";
@@ -120,10 +145,41 @@
         mysqli_close( $conexion );
     }
 
+// SELECT * FROM `ciclo` WHERE 1
+//`idCiclo`
+//`idConeja`
+//`idConejo`
+//`estadoConeja`
+//`iniEstado_finCiclo`
+//`iniCiclo`
 
 
 
+    function nuevo_ciclo($idConeja, $idConejo, $estadoConeja, $estadoEnTablaPrin){
+        
+        $hoy = date("Y-m-d");
 
+        include_once 'conectDB.php';
+        $conexion = conectarDB();
+        //incertamos en tabla de ciclo
+        $sql = "INSERT INTO ciclo (idConeja, idConejo, estadoConeja, iniEstado_finCiclo, iniCiclo) VALUES ('$idConeja', '$idConejo', '$estadoConeja', '$hoy', '$hoy')";
+        if ($conexion->query($sql) === TRUE) {
+        } else {
+            echo "Error: " . $sql . "<br>" . $conexion->error;
+        }
+
+        //cambiamos estatus de coneja y conejo para evitar que aparezacn en la tabla de cosas
+        $sql = "UPDATE conejos SET estadoCONEJO ='$estadoEnTablaPrin' WHERE idCONEJO='$idConeja' OR idCONEJO='$idConejo' ";
+        if ($conexion->query($sql) === TRUE) {
+        } else {
+            echo "Error: " . $sql . "<br>" . $conexion->error;
+        }
+        mysqli_close( $conexion );
+    }
+
+            
+    
+    
     //function EliminarArchivo($idarchivo){
 
 //        include_once 'conectDB.php';
